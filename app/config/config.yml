@@ -1,0 +1,317 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+
+framework:
+    templating: { engines: ['twig'] }
+    #esi: ~
+    translator: { fallbacks: ['%locale%'] }
+    secret: '%secret%'
+    router:
+        resource: '%kernel.project_dir%/app/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enable_annotations: true }
+    #serializer: { enable_annotations: true }
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    session:
+        # https://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id: session.handler.native_file
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    cache: false
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+
+    form_themes:
+        - '@SonataFormatter/Form/formatter.html.twig'
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        types:
+            json: Sonata\Doctrine\Types\JsonType
+        driver: pdo_mysql
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
+        charset: UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                mappings:
+                    SonataUserBundle: ~
+                    FOSUserBundle: ~
+                    ApplicationSonataUserBundle: ~
+                    ApplicationSonataClassificationBundle: ~
+                    SonataClassificationBundle: ~
+                    SonataMediaBundle: ~
+                    ApplicationSonataMediaBundle: ~
+                    ApplicationSonataNewsBundle: ~
+                    SonataNewsBundle: ~
+
+        #auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: '%mailer_transport%'
+    host: '%mailer_host%'
+    username: '%mailer_user%'
+    password: '%mailer_password%'
+    spool: { type: memory }
+
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     Application\Sonata\UserBundle\Entity\User
+
+    group:
+        group_class:   Application\Sonata\UserBundle\Entity\Group
+        group_manager: sonata.user.orm.group_manager # If you're using doctrine orm (use sonata.user.mongodb.group_manager for mongodb)
+
+    service:
+        user_manager: sonata.user.orm.user_manager
+
+    from_email:
+        address: "fake@fake.fake"
+        sender_name: "fake"
+
+sonata_block:
+    default_contexts: [sonata_page_bundle]
+    blocks:
+        # enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+
+sonata_user:
+    #mailer: custom.mailer.service.id
+    security_acl: true
+    manager_type: orm # can be orm or mongodb
+    class:
+        user: Application\Sonata\UserBundle\Entity\User
+        group: Application\Sonata\UserBundle\Entity\Group
+
+sonata_classification:
+    class:
+        tag: Application\Sonata\ClassificationBundle\Entity\Tag
+        category: Application\Sonata\ClassificationBundle\Entity\Category
+        collection: Application\Sonata\ClassificationBundle\Entity\Collection
+        context: Application\Sonata\ClassificationBundle\Entity\Context
+
+sonata_media:
+    # if you don't use default namespace configuration
+    class:
+        media: Application\Sonata\MediaBundle\Entity\Media
+        gallery: Application\Sonata\MediaBundle\Entity\Gallery
+        gallery_has_media: Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+    providers:
+        image:
+            resizer: sonata.media.resizer.square
+    # if you don't use default namespace configuration
+    #class:
+    #    media: MyVendor\MediaBundle\Entity\Media
+    #    gallery: MyVendor\MediaBundle\Entity\Gallery
+    #    gallery_has_media: MyVendor\MediaBundle\Entity\GalleryHasMedia
+    db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr it is mandatory to choose one here
+    default_context: default # you need to set a context
+    contexts:
+        default:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+                - sonata.media.provider.vimeo
+
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+
+        news:
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+                - sonata.media.provider.vimeo
+
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+
+    cdn:
+        server:
+            path: http://localhost/SPTS-PNIOv3/web/uploads/media # http://media.sonata-project.org/
+
+    filesystem:
+        local:
+            directory:  '%kernel.root_dir%/../web/uploads/media'
+            create:     false
+
+sonata_news:
+    title:        Sonata Project
+    link:         https://sonata-project.org
+    description:  Cool bundles on top of Symfony2
+    salt:         'secureToken'
+    permalink_generator: sonata.news.permalink.date # sonata.news.permalink.collection
+
+    comment:
+        notification:
+            emails:   [email@example.org, email2@example.org]
+            from:     no-reply@sonata-project.org
+            template: '@SonataNews/Mail/comment_notification.txt.twig'
+
+
+sonata_formatter:
+    #ckeditor:
+    #    templates:
+    #        browser: '@SonataFormatter/Ckeditor/browser.html.twig'
+    #        upload: '@SonataFormatter/Ckeditor/upload.html.twig'
+    default_formatter: text
+    formatters:
+        markdown:
+            service: sonata.formatter.text.markdown
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+                - sonata.media.formatter.twig
+
+        text:
+            service: sonata.formatter.text.text
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+                - sonata.media.formatter.twig
+
+        rawhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+                - sonata.media.formatter.twig
+
+        richhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+                - sonata.media.formatter.twig
+
+sonata_translation:
+    locales: [en, fr, it, nl, es, sl]
+    default_locale: en
+    locale_switcher: true
+    # here enable the types you need
+    #gedmo:
+    #    enabled: true
+    #knplabs:
+    #    enabled: true
+    #phpcr:
+    #    enabled: true
+
+sonata_admin:
+    templates:
+        layout: '@SonataTranslation/standard_layout.html.twig'
+    assets:
+        extra_javascripts:
+            # ...
+            - bundles/fosckeditor/ckeditor.js
+            - bundles/sonataformatter/vendor/markitup-markitup/markitup/jquery.markitup.js
+            - bundles/sonataformatter/markitup/sets/markdown/set.js
+            - bundles/sonataformatter/markitup/sets/html/set.js
+            - bundles/sonataformatter/markitup/sets/textile/set.js
+
+        extra_stylesheets:
+            - bundles/sonatatranslation/css/sonata-translation.css
+            - bundles/sonataformatter/markitup/skins/sonata/style.css
+            - bundles/sonataformatter/markitup/sets/markdown/style.css
+            - bundles/sonataformatter/markitup/sets/html/style.css
+            - bundles/sonataformatter/markitup/sets/textile/style.css
+
+fos_ck_editor:
+    default_config: default
+    configs:
+        news:
+            # default toolbar plus Format button
+            toolbar:
+                 - [Bold, Italic, Underline, -, Cut, Copy, Paste,
+                   PasteText, PasteFromWord, -, Undo, Redo, -,
+                   NumberedList, BulletedList, -, Outdent, Indent, -,
+                   Blockquote, -, Image, Link, Unlink, Table]
+                 - [Format, Maximize, Source]
+
+            filebrowserBrowseRoute: admin_sonata_media_media_ckeditor_browser
+            filebrowserImageBrowseRoute: admin_sonata_media_media_ckeditor_browser
+            # Display Images by default when clicking the image dialog browse button
+            filebrowserImageBrowseRouteParameters:
+                 provider: sonata.media.provider.image
+            filebrowserUploadMethod: form
+            filebrowserUploadRoute: admin_sonata_media_media_ckeditor_upload
+            filebrowserUploadRouteParameters:
+                 provider: sonata.media.provider.file
+            # Upload file as image when sending a file from the image dialog
+            filebrowserImageUploadRoute: admin_sonata_media_media_ckeditor_upload
+            filebrowserImageUploadRouteParameters:
+                 provider: sonata.media.provider.image
+                 context: my-context # Optional, to upload in a custom context
+                 format: my-big # Optional, media format or original size returned to editor
+
+            #providers:
+            #     - sonata.media.provider.dailymotion
+            #     - sonata.media.provider.youtube
+            #     - sonata.media.provider.image
+
+            #formats:
+            #    small: { width: 150 , quality: 95}
+            #    big:   { width: 500 , quality: 90}
+
+        default:
+            # default toolbar plus Format button
+            toolbar:
+                - [Bold, Italic, Underline, -, Cut, Copy, Paste,
+                   PasteText, PasteFromWord, -, Undo, Redo, -,
+                   NumberedList, BulletedList, -, Outdent, Indent, -,
+                   Blockquote, -, Image, Link, Unlink, Table]
+                - [Format, Maximize, Source]
+
+            filebrowserBrowseRoute: admin_sonata_media_media_ckeditor_browser
+            filebrowserImageBrowseRoute: admin_sonata_media_media_ckeditor_browser
+            # Display Images by default when clicking the image dialog browse button
+            filebrowserImageBrowseRouteParameters:
+                provider: sonata.media.provider.image
+            filebrowserUploadMethod: form
+            filebrowserUploadRoute: admin_sonata_media_media_ckeditor_upload
+            filebrowserUploadRouteParameters:
+                provider: sonata.media.provider.file
+            # Upload file as image when sending a file from the image dialog
+            filebrowserImageUploadRoute: admin_sonata_media_media_ckeditor_upload
+            filebrowserImageUploadRouteParameters:
+                provider: sonata.media.provider.image
+                context: my-context # Optional, to upload in a custom context
+                format: my-big # Optional, media format or original size returned to editor

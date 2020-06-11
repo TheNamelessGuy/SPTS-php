@@ -1,0 +1,61 @@
+
+
+{#<link rel="stylesheet" href="{{ asset('assets/style/PostPage/postpage_content.css') }}" />
+
+<div id="Post" class="row">
+    <div class="col s2"></div>
+    <div id="PostContentColumn" class="col s8">
+        <div class="row">
+            <div class="col s1"></div>
+            <div class="col s10">
+                <div id="PostContent" class="row">
+                    <div class="col s12">
+                        <h2 class="title_inline">{{ Post.title }}</h2>
+                        <p class="title_inline">by {{ Post.author }}</p>
+                    </div>
+                    <div class="col s12 post_page_content">{{ Post.content|raw }}</div>
+                    <div class="col s12"><div class="post_page_type"></div></div>
+                </div>
+                <div id="BreakLine"></div>
+                {% if Post.commentsEnabled == true %}
+                    <div id="Comments">
+                        <h4 style="margin-bottom: 3vh;">Komentarji:</h4>
+                        <div class="row">
+                            <div class="col s12">
+                                <button onclick="addComment()" id="AddComment" class="waves-effect waves-light btn">Dodaj komentar<i class="material-icons right">arrow_drop_down</i></button>
+                                <button onclick="closeComment()" id="CloseComment" class="waves-effect waves-light btn"><i style="vertical-align: middle" class="material-icons">clear</i></button>
+                            </div>
+                        </div>
+                        <div id="Form">
+                            {{ form_start(CommentForm) }}
+                            {{ form_end(CommentForm) }}
+                            <button id="CommentButton" class="waves-effect waves-light btn">Komentiraj</button>
+                        </div>
+                        {% set counter = 1 %}
+                        <div id="CommentsContent">
+                        {% for comment in Post.comments %}
+                            {% if counter != 1 %}
+                                <div id="BreakLine" style="margin-bottom: 7vh;"></div>
+                                <div style="margin-bottom: 7vh;">
+                                    <h5>{{ counter }}. Komentar</h5>
+                                    <div>{{ comment.message }}</div>
+                                </div>
+                            {% else %}
+                                <div style="margin-bottom: 7vh; margin-top: 7vh;}">
+                                    <h5>{{ counter }}. Komentar</h5>
+                                    <div>{{ comment.message }}</div>
+                                </div>
+                            {% endif %}
+                            {% set counter = counter + 1 %}
+                        {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col s1"></div>
+        </div>
+    </div>
+    <div class="col s2"></div>
+</div>
+
+<script src="{{ asset("assets/script/PostPage/postpage_content.js") }}"></script>#}

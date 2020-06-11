@@ -1,0 +1,44 @@
+#Footer {
+    background-color: #333333;
+    z-index: 5 !important;
+}
+
+#Footer * {
+    color: #4d4d4d !important;
+}
+
+#LineBreak {
+    width: 80%;
+    border: 1px solid #404040;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    border-radius: 10px;
+}
+
+#CopyrightSection {
+    padding-bottom: 2vh;
+}
+
+#SocialMediaLinks {
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+}
+
+#SocialMediaLinks i {
+    color: #737373 !important;
+}
+
+.footer-link-item {
+    margin-top: 1vh;
+}
+
+#SocialMediaLinks i:hover {
+    color: #a6a6a6 !important;
+    cursor: pointer;
+}
+
+#Footer a:hover {
+    color: #808080 !important;
+}

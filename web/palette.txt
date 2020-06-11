@@ -1,0 +1,12 @@
+#c038ff -- purpleer purple
+#A9267A -- purple
+#A24298
+#945AB3
+#816FC8
+#6B82D8
+#5294E2 -- main color
+#00B4F1
+#00CFE1
+#00E5BA -- greenish
+#99F38D -- green
+#F9F871 -- yellow

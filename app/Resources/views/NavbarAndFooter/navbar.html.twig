@@ -1,0 +1,88 @@
+    <link rel="stylesheet" href="{{ asset('build/navbar.css') }}" >
+
+    <div class="navbar-place"></div>
+
+    {{ profile_authentication_ddm | raw }}
+    <ul id="Filters" class="dropdown-content">
+        {{ filters_html | raw }}
+        <li class="divider"></li>
+        <li><a class="filter-item">Počisti</a></li>
+    </ul>
+    <nav id="Navbar">
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo center"><img src="{{ asset("assets/images/spts_icon.png") }}"></a>
+            <ul class="left hide-on-med-and-down">
+                <li><a href="./">Novice</a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="Filters">Filtri<i class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
+            <ul class="right hide-on-med-and-down">
+                <li>{{ profile_authentication_ni | raw }}</li>
+            </ul>
+        </div>
+    </nav>
+
+    <script src="{{ asset('build/navbar.js') }}"></script>
+
+
+    {#<link rel="stylesheet" href="{{ asset('assets/style/NavbarAndFooter/navbar_css.css') }}" />
+
+    <ul id="MoreDDID" class="dropdown-content">
+        <li>
+            <a href="#!">Pomoč</a>
+        </li>
+        <li>
+            <a href="#!">Prijavi napako</a>
+        </li>
+        <li>
+            <a href="#!">Kontakt</a>
+        </li>
+        <li class="divider" tabindex="-1"></li>
+        <li>
+            <a href="#!">O strani</a>
+        </li>
+    </ul>
+    <ul id="UserDDID" class="dropdown-content">
+        <li>
+            <a href="profile">Profil</a>
+        </li>
+        {% if AdminLink == true %}
+            <li>
+                <a href="admin">Administracija</a>
+            </li>
+        {% endif %}
+        <li class="divider" tabindex="-1"></li>
+        <li>
+            <a href="logout">Odjava</a>
+        </li>
+    </ul>
+    <nav id="NavbarID">
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo center"><img src="{{ asset('assets/images/Icon.png') }}"></a>
+            <ul class="left hide-on-med-and-down">
+                <li>
+                    <a href="http://localhost/SPTS-PNIOv3/web/app_dev.php/">Domov</a>
+                </li>
+                {% if Filter == true %}
+                    <li id='FilterID'>
+                            <div class='input-field'>
+                                {{ form_start(FilterForm) }}
+                                {{ form_end(FilterForm) }}
+                            </div>
+                    </li>
+                {% endif %}
+                <li>
+                    <a class="dropdown-trigger" data-target="MoreDDID">
+                        Več<i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="right hide-on-med-and-down">
+                <li id="UserListItem">
+                    <a {{ Properties }}><img src="{{ asset("favicon.ico") }}" class="circle responsive-img"> <span> {{ Label }}</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="Spacer"></div>
+
+    <script src="{{ asset('assets/script/NavbarAndFooter/navbar.js') }}"></script>#}

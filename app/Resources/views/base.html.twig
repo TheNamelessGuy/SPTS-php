@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}{% endblock %}</title>
+        <!--<link rel="icon" type="image/x-icon" href="{{ asset('assets/images/IconCircle.png') }}" />-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+        {% block stylesheets %}{% endblock %}
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+            body {
+                background-color: lightgrey{##f4f4f4#};
+                font-family: 'Montserrat', sans-serif;
+            }
+        </style>
+        <link rel="stylesheet" href="{{ asset('assets/style/Base/base.css') }}" />
+    </head>
+    <body>
+
+        {% block content %}{% endblock %}
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="{{ asset('assets/script/Base/base.js') }}"></script>
+        <script src="{{ asset('build/app.js') }}"></script>
+        <script src="{{ asset('build/runtime.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

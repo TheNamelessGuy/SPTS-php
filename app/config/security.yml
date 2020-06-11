@@ -1,0 +1,66 @@
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+
+    role_hierarchy:
+        ROLE_STUDENT/DIJAK: ROLE_STUDENT/DIJAK
+        ROLE_PROFESSOR/PROFESOR: ROLE_PROFESSOR/PROFESOR
+        ROLE_ADMIN:       [ROLE_ADMIN, ROLE_SONATA_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_DEVELOPER: [ROLE_DEVELOPER, ROLE_ALLOWED_TO_SWITCH]
+        #SONATA:
+        #    - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT  # if you are using acl then this line must be commented
+
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    acl:
+        connection: default
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|Images|js)/
+            security: false
+
+        main:
+            pattern:             .*
+            context:             user
+            form_login:
+                provider:       fos_userbundle
+                #csrf_token_generator: security.csrf.token_manager
+                login_path:     /login
+                use_forward:    false
+                check_path:     /login_check
+                failure_path:   null
+            logout:             true
+            anonymous:          true
+
+        admin:
+            pattern:            /admin(.*)
+            context:            user
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /admin/login
+                use_forward:    false
+                check_path:     /admin/login_check
+                failure_path:   null
+            logout:
+                path:           /admin/logout
+                target:         /admin/login
+            anonymous:          true
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: [ROLE_PROFESSOR/PROFESOR, ROLE_ADMIN, ROLE_SONATA_ADMIN, ROLE_DEVELOPER] }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN, ROLE_DEVELOPER, ROLE_PROFESSOR/PROFESOR] }
+        - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+

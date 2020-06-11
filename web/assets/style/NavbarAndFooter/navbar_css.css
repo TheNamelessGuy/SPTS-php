@@ -1,0 +1,96 @@
+/*#NavbarID {
+    background-color: #5294E2;
+    letter-spacing: .05em;
+    position: fixed;
+    z-index: 5;
+}
+
+#NavbarID a {
+    color: #efefef;
+    transition: color .3s;
+}
+
+#NavbarID .nav-wrapper {
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: -6.22vh;
+    width: auto !important;
+}
+
+#MoreDDID {
+    background-color: #5294E2;
+}
+
+#UserDDID {
+    background-color: #5294E2;
+}
+
+#MoreDDID li:hover {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+#UserDDID li:hover {
+    background-color: rgba(0, 0, 0, .1);
+}
+
+#UserListItem a img {
+    vertical-align: middle;
+}
+
+#NavbarID li a:hover {
+    color: white;
+    //text-shadow: 0 0 10px #FFFFFF;
+}
+
+#Spacer {
+    width: 100%;
+    height: 6.2vh;
+}
+
+.brand-logo img {
+    height: 8vh;
+    margin-top: -1vh;
+}
+
+#FilterID > div > form > div > label {
+    display: none;
+}
+
+#FilterID form > div {
+    margin-top: .8vh;
+}
+
+#FilterID input {
+    border: none !important;
+    color: #efefef;
+}
+
+#FilterID ul {
+    background-color: #5294E2;
+    overflow: hidden;
+}
+
+#FilterID ul span {
+    color: #efefef;
+}
+
+#FilterID ul span::before {
+    border: 2px solid #efefef;
+}
+
+#FilterID ul li.selected span::before {
+    border: none;
+}
+
+#FilterID svg path:nth-child(1) {
+    fill: #efefef;
+}
+
+#FilterID:hover {
+    background-color: rgba(0, 0, 0, .1);
+    color: white;
+}*/

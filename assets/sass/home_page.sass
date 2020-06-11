@@ -1,0 +1,86 @@
+$slider-hight: 80vh
+$container-sides: 7.75%
+$col-inner-padding: 3.5%
+$null: 0
+$post-abstract-sides-margin: 22.5%
+
+.slider
+  height: $slider-hight !important
+
+.slider > ul.slides
+  height: $slider-hight !important
+
+.slider ul.slides div
+  margin-top: 40vh
+
+.indicators
+  z-index: 2
+  margin-bottom: 2vh !important
+
+.indicators li.active
+  background-color: blue !important
+
+#Posts
+  width: 84.5%
+  margin-left: $container-sides
+  margin-right: $container-sides
+
+#Posts div.row div.left-col
+  padding: $null
+  padding-right: $col-inner-padding
+
+#Posts div.row div.right-col
+  padding: $null
+  padding-left: $col-inner-padding
+
+#Posts div.row div.col div.post
+  margin-top: 25vh
+  position: relative
+
+#Posts div.row div.col div.post:hover
+  cursor: pointer
+
+#Posts div.row div.col div.post img
+  width: 100%
+  height: 40vh
+  object-fit: cover
+
+#Posts div.row div.col div.post div.post-text h5
+  margin-top: $null
+
+#Posts div.row div.col div.post div.post-text
+  color: white
+  position: absolute
+  width: 100%
+  bottom: 2vh
+  padding-left: 2.5%
+
+#Post_Abstract
+  position: fixed
+  top: $null
+  width: 100%
+  height: 100vh
+  z-index: 5
+  display: none
+
+#Post_Abstract > div:first-child
+  width: 55%
+  margin-left: $post-abstract-sides-margin
+  margin-right: $post-abstract-sides-margin
+  margin-top: 5vh
+  z-index: 6
+
+#Post_Abstract div div:first-child
+  width: 100%
+  height: 20vh
+  background-color: red
+
+#Post_Abstract div div:nth-child(2)
+  width: 100%
+  height: 100vh
+  background-color: green
+
+#Post_Abstract div div:nth-child(3)
+  width: 100%
+  height: 20vh
+  background-color: blue

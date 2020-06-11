@@ -1,0 +1,63 @@
+label {
+    margin-left: 3% !important;
+    background-color: white;
+}
+
+#FromStyleID {
+    /*border: 2px solid lightgray;*/
+    border-radius: 10px;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    background-color: white;
+    -webkit-box-shadow: 13px 20px 29px 0px rgba(189,189,189,1);
+    -moz-box-shadow: 13px 20px 29px 0px rgba(189,189,189,1);
+    box-shadow: 13px 20px 29px 0px rgba(189,189,189,1);
+}
+
+#_submit {
+    position: absolute;
+    width: 50%;
+    height: 5vh;
+    right: 0;
+    font-size: 1.5rem;
+}
+
+#SubmitButtonParent {
+    padding-bottom: 2vh;
+}
+
+input {
+    width: 97% !important;
+}
+
+.website-icon {
+    height: 20vh;
+}
+
+#FormTitle h2 {
+    margin-top: 0;
+    margin-left: 33.5%;
+}
+
+#FormTitle img {
+    margin-left: 22%;
+}
+
+#LoginFormID {
+    margin-top: 2.5vh;
+}
+
+#ErrorMessageID {
+    background-color: #fff3cd;
+    border-radius: 10px;
+    margin-top: 5vh;
+    color: #ad8103;
+    border: 3px solid #ffe8a5;
+}
+
+#ErrorMessageID h6 {
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}

@@ -1,0 +1,31 @@
+    <link rel="stylesheet" href="{{ asset('build/home_page.css') }}">
+
+    <div class="slider">
+        <ul class="slides">
+            {{ slider_posts_html | raw }}
+        </ul>
+    </div>
+
+    <script src="{{ asset('build/home_page.js') }}"></script>
+
+    {% include "NavbarAndFooter/navbar.html.twig" %}
+
+    <div id='Posts'>
+        <div class='row'>
+            {{ posts_html | raw }}
+        </div>
+    </div>
+
+    <div id="Post_Abstract">
+        <div>
+            <div id="top">
+
+            </div>
+            <div id="mid">
+
+            </div>
+            <div id="bot">
+
+            </div>
+        </div>
+    </div>

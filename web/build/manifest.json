@@ -1,0 +1,13 @@
+{
+  "build/app.css": "/build/app.css",
+  "build/app.js": "/build/app.js",
+  "build/footer.css": "/build/footer.css",
+  "build/footer.js": "/build/footer.js",
+  "build/home_page.css": "/build/home_page.css",
+  "build/home_page.js": "/build/home_page.js",
+  "build/navbar.css": "/build/navbar.css",
+  "build/navbar.js": "/build/navbar.js",
+  "build/post_page.css": "/build/post_page.css",
+  "build/post_page.js": "/build/post_page.js",
+  "build/runtime.js": "/build/runtime.js"
+}

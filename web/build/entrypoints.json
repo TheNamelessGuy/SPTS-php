@@ -1,0 +1,49 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/build/runtime.js",
+        "/build/app.js"
+      ],
+      "css": [
+        "/build/app.css"
+      ]
+    },
+    "navbar": {
+      "js": [
+        "/build/runtime.js",
+        "/build/navbar.js"
+      ],
+      "css": [
+        "/build/navbar.css"
+      ]
+    },
+    "home_page": {
+      "js": [
+        "/build/runtime.js",
+        "/build/home_page.js"
+      ],
+      "css": [
+        "/build/home_page.css"
+      ]
+    },
+    "footer": {
+      "js": [
+        "/build/runtime.js",
+        "/build/footer.js"
+      ],
+      "css": [
+        "/build/footer.css"
+      ]
+    },
+    "post_page": {
+      "js": [
+        "/build/runtime.js",
+        "/build/post_page.js"
+      ],
+      "css": [
+        "/build/post_page.css"
+      ]
+    }
+  }
+}
